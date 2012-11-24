@@ -11,18 +11,18 @@ var (
 )
 
 var (
-	ErrOther    response_Err = response_OTHER
-	ErrNotDir   response_Err = response_NOTDIR
-	ErrIsDir    response_Err = response_ISDIR
-	ErrNoEnt    response_Err = response_NOENT
-	ErrRange    response_Err = response_RANGE
-	ErrOldRev   response_Err = response_REV_MISMATCH
-	ErrTooLate  response_Err = response_TOO_LATE
-	ErrReadonly response_Err = response_READONLY
+	ErrOther    Response_Err = Response_OTHER
+	ErrNotDir   Response_Err = Response_NOTDIR
+	ErrIsDir    Response_Err = Response_ISDIR
+	ErrNoEnt    Response_Err = Response_NOENT
+	ErrRange    Response_Err = Response_RANGE
+	ErrOldRev   Response_Err = Response_REV_MISMATCH
+	ErrTooLate  Response_Err = Response_TOO_LATE
+	ErrReadonly Response_Err = Response_READONLY
 )
 
 type Error struct {
-	Err    error
+	Err    Response_Err
 	Detail string
 }
 
@@ -34,7 +34,7 @@ func newError(t *txn) *Error {
 }
 
 func (e *Error) Error() (s string) {
-	s = e.Err.Error()
+	s = e.Err.String()
 	if e.Detail != "" {
 		s += ": " + e.Detail
 	}
